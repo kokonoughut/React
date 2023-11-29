@@ -16,6 +16,12 @@ const FirstComponent = ({
         {details.name} is {age} years old and has {details.bloodGroup} blood and
         lives in {details.address} and is {isStudent ? "" : "not "} a student
         whose Square of his age is {square(age)} and who has the subjects are :
+        <button
+          onClick={(e) => console.log(e)}
+          onMouseOver={(e) => console.log(e)}
+        >
+          Click here!
+        </button>
       </p>
       <ul>
         {subjects.map((s) => (
