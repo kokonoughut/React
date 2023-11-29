@@ -15,7 +15,7 @@ const FirstComponent = ({
       <p>
         {details.name} is {age} years old and has {details.bloodGroup} blood and
         lives in {details.address} and is {isStudent ? "" : "not "} a student
-        who has the subjects are : Square of his age is {square(age)}
+        whose Square of his age is {square(age)} and who has the subjects are :
       </p>
       <ul>
         {subjects.map((s) => (
