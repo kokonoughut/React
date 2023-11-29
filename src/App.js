@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import FirstComponent from "./FirstComponent";
 
 function App() {
   return (
@@ -15,6 +16,15 @@ function App() {
         >
           UTSAB KARKI
         </a>
+        {/* self closing tag for only sending attributes without any children*/}
+        <FirstComponent
+          name="Test"
+          courseName="Mern"
+          age={22}
+          isStudent={true}
+          details={{ name: "abcd", bloodGroup: "A+", address: "Dhapakhel" }}
+          subjects={["mongoDB", "expressJs", "reactJs", "NodeJs"]}
+        />
       </header>
     </div>
   );
