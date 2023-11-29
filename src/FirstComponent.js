@@ -7,8 +7,15 @@ const FirstComponent = (abc) => {
       <p>
         {abc.details.name} is {abc.age} years old and has{" "}
         {abc.details.bloodGroup} blood and lives in {abc.details.address} and is{" "}
-        {abc.isStudent ? "" : "not "} a student
+        {abc.isStudent ? "" : "not "} a student who has the subjects are :{" "}
+        Square of his age is {abc.square(abc.age)}
       </p>
+      <ul>
+        {abc.subjects.map((s) => (
+          // key needs to be provided for a list as during array use all the elements must be provided a unique key
+          <li key={s}>{s}</li>
+        ))}
+      </ul>
     </div>
   );
 };
