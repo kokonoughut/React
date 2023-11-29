@@ -18,12 +18,16 @@ function App() {
         </a>
         {/* self closing tag for only sending attributes without any children*/}
         <FirstComponent
+          // for string assignment we use =
           name="Test"
           courseName="Mern"
+          // for number , boolean ,objects=dictionary,array we use {}
           age={22}
           isStudent={true}
           details={{ name: "abcd", bloodGroup: "A+", address: "Dhapakhel" }}
+          // we can also pass function
           subjects={["mongoDB", "expressJs", "reactJs", "NodeJs"]}
+          square={(x) => x * x}
         />
       </header>
     </div>
