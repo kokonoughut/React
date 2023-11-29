@@ -1,17 +1,24 @@
-const FirstComponent = (abc) => {
+const FirstComponent = ({
+  name,
+  courseName,
+  age,
+  isStudent,
+  details,
+  subjects,
+  square,
+}) => {
   return (
     <div>
       <p>For example</p>
-      <h1>{abc.name}</h1>
-      <h1>{abc.courseName}</h1>
+      <h1>{name}</h1>
+      <h1>{courseName}</h1>
       <p>
-        {abc.details.name} is {abc.age} years old and has{" "}
-        {abc.details.bloodGroup} blood and lives in {abc.details.address} and is{" "}
-        {abc.isStudent ? "" : "not "} a student who has the subjects are :{" "}
-        Square of his age is {abc.square(abc.age)}
+        {details.name} is {age} years old and has {details.bloodGroup} blood and
+        lives in {details.address} and is {isStudent ? "" : "not "} a student
+        who has the subjects are : Square of his age is {square(age)}
       </p>
       <ul>
-        {abc.subjects.map((s) => (
+        {subjects.map((s) => (
           // key needs to be provided for a list as during array use all the elements must be provided a unique key
           <li key={s}>{s}</li>
         ))}
