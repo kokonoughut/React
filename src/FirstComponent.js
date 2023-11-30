@@ -17,7 +17,7 @@ const FirstComponent = ({
     <div id="myComponent">
       <p>For example</p>
       <h1>{name}</h1>
-      <h1>{courseName}</h1>
+      {testBoolean && <h1>{courseName}</h1>}
       <p>
         {details.name} is {age} years old and has {details.bloodGroup} blood and
         lives in {details.address} and is {testBoolean ? "" : "not "} a student
