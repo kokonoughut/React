@@ -8,7 +8,8 @@ const FirstComponent = ({
   square,
 }) => {
   return (
-    <div>
+    // providing an id to uniquely identify the components
+    <div id="myComponent">
       <p>For example</p>
       <h1>{name}</h1>
       <h1>{courseName}</h1>
