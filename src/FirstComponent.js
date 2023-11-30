@@ -14,7 +14,7 @@ const FirstComponent = ({
   console.log(typeof testBoolean, typeof setTestBoolean, "check state");
   return (
     // providing an id to uniquely identify the components
-    <div id="myComponent">
+    <div id="myComponent" style={{ color: testBoolean ? "black" : "white" }}>
       <p>For example</p>
       <h1>{name}</h1>
       {testBoolean && <h1>{courseName}</h1>}
