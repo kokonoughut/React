@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const FirstComponent = ({
   name,
   courseName,
@@ -7,6 +9,9 @@ const FirstComponent = ({
   subjects,
   square,
 }) => {
+  // a=> same type as parameter and b will be a function
+  const [a, b] = useState(false);
+  console.log(typeof a, typeof b, "check state");
   return (
     // providing an id to uniquely identify the components
     <div id="myComponent">
@@ -15,12 +20,9 @@ const FirstComponent = ({
       <h1>{courseName}</h1>
       <p>
         {details.name} is {age} years old and has {details.bloodGroup} blood and
-        lives in {details.address} and is {isStudent ? "" : "not "} a student
-        whose Square of his age is {square(age)} and who has the subjects are :
-        <button
-          onClick={(e) => console.log(e)}
-          onMouseOver={(e) => console.log(e)}
-        >
+        lives in {details.address} and is {a ? "" : "not "} a student whose
+        Square of his age is {square(age)} and who has the subjects are :
+        <button onClick={(e) => b(!a)} onMouseOver={(e) => console.log(e)}>
           Click here!
         </button>
       </p>
