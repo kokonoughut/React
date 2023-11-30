@@ -33,6 +33,7 @@ const FirstComponent = ({
           Click here!
         </button>
         <button onClick={(e) => setCount(count + 1)}>Click here add age</button>
+        <button onClick={(e) => setCount(count - 1)}>Click here sub age</button>
       </p>
       <ul>
         {subjects.map((s) => (
