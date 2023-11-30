@@ -10,7 +10,10 @@ const FirstComponent = ({
   square,
 }) => {
   // testBoolean=> same type as parameter and setTestBoolean will be a function
-  const [testBoolean, setTestBoolean] = useState(false);
+  const [testBoolean, setTestBoolean] = useState(isStudent);
+
+  // number state example
+  const [count, setCount] = useState(age);
   console.log(typeof testBoolean, typeof setTestBoolean, "check state");
   return (
     // providing an id to uniquely identify the components
@@ -19,15 +22,17 @@ const FirstComponent = ({
       <h1>{name}</h1>
       {testBoolean && <h1>{courseName}</h1>}
       <p>
-        {details.name} is {age} years old and has {details.bloodGroup} blood and
-        lives in {details.address} and is {testBoolean ? "" : "not "} a student
-        whose Square of his age is {square(age)} and who has the subjects are :
+        {details.name} is {count} years old and has {details.bloodGroup} blood
+        and lives in {details.address} and is {testBoolean ? "" : "not "} a
+        student whose Square of his age is {square(age)} and who has the
+        subjects are :
         <button
           onClick={(e) => setTestBoolean(!testBoolean)}
           onMouseOver={(e) => console.log(e)}
         >
           Click here!
         </button>
+        <button onClick={(e) => setCount(count + 1)}>Click here add age</button>
       </p>
       <ul>
         {subjects.map((s) => (
