@@ -49,7 +49,13 @@ const FirstComponent = ({
           // here e stands for event so we take the target value of the onChange event
           onChange={(e) => setSubjects(e.target.value)}
         />
-        <button onClick={(e) => setSubs([subject, ...subs])}>
+        <button
+          onClick={(e) => {
+            setSubs([subject, ...subs]);
+            // added as to remove the text in textbox
+            setSubjects("");
+          }}
+        >
           Add subjects
         </button>
       </p>
@@ -58,7 +64,11 @@ const FirstComponent = ({
           // key needs to be provided for a list as during array use all the elements must be provided a unique key
           <li key={s}>
             {s}
-            <AiFillDelete />
+            {/* places only the elements that is not equal to s */}
+            <AiFillDelete
+              color="4d7a4d"
+              onClick={(e) => setSubs(subs.filter((x) => x !== s))}
+            />
           </li>
         ))}
       </ul>
