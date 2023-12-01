@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { AiFillDelete } from "react-icons/ai";
 const FirstComponent = ({
   name,
   courseName,
@@ -56,7 +56,10 @@ const FirstComponent = ({
       <ul>
         {subs.map((s) => (
           // key needs to be provided for a list as during array use all the elements must be provided a unique key
-          <li key={s}>{s}</li>
+          <li key={s}>
+            {s}
+            <AiFillDelete />
+          </li>
         ))}
       </ul>
       {/* <form>
