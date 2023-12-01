@@ -15,6 +15,10 @@ const FirstComponent = ({
   // number state example
   const [count, setCount] = useState(age);
   console.log(typeof testBoolean, typeof setTestBoolean, "check state");
+
+  // array state setting example
+  const [subs, setSubs] = useState(subjects);
+
   return (
     // providing an id to uniquely identify the components
     <div id="myComponent" style={{ color: testBoolean ? "black" : "white" }}>
@@ -36,9 +40,11 @@ const FirstComponent = ({
         <button onClick={(e) => setCount(count > 1 ? count - 1 : count)}>
           Click here sub age
         </button>
+        <input placeholder="enter name of subject" />
+        <button onClick={(e) => setSubs(["new", ...subs])}>Add subjects</button>
       </p>
       <ul>
-        {subjects.map((s) => (
+        {subs.map((s) => (
           // key needs to be provided for a list as during array use all the elements must be provided a unique key
           <li key={s}>{s}</li>
         ))}
