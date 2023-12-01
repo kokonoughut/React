@@ -46,9 +46,12 @@ const FirstComponent = ({
         <input
           placeholder="enter name of subject"
           value={subject}
+          // here e stands for event so we take the target value of the onChange event
           onChange={(e) => setSubjects(e.target.value)}
         />
-        <button onClick={(e) => setSubs(["new", ...subs])}>Add subjects</button>
+        <button onClick={(e) => setSubs([subject, ...subs])}>
+          Add subjects
+        </button>
       </p>
       <ul>
         {subs.map((s) => (
