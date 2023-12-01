@@ -19,6 +19,9 @@ const FirstComponent = ({
   // array state setting example
   const [subs, setSubs] = useState(subjects);
 
+  //string state setting example
+  const [subject, setSubjects] = useState("");
+
   return (
     // providing an id to uniquely identify the components
     <div id="myComponent" style={{ color: testBoolean ? "black" : "white" }}>
@@ -40,7 +43,11 @@ const FirstComponent = ({
         <button onClick={(e) => setCount(count > 1 ? count - 1 : count)}>
           Click here sub age
         </button>
-        <input placeholder="enter name of subject" />
+        <input
+          placeholder="enter name of subject"
+          value={subject}
+          onChange={(e) => setSubjects(e.target.value)}
+        />
         <button onClick={(e) => setSubs(["new", ...subs])}>Add subjects</button>
       </p>
       <ul>
@@ -49,6 +56,30 @@ const FirstComponent = ({
           <li key={s}>{s}</li>
         ))}
       </ul>
+      {/* <form>
+        <input type="button" />
+        <input type="checkbox" />
+        <input type="color" />
+        <input type="date" />
+        <input type="datetime-local" />
+        <input type="email" />
+        <input type="file" />
+        <input type="hidden" />
+        <input type="image" />
+        <input type="month" />
+        <input type="number" />
+        <input type="password" />
+        <input type="radio" />
+        <input type="range" />
+        <input type="reset" />
+        <input type="search" />
+        <input type="submit" />
+        <input type="tel" />
+        <input type="text" />
+        <input type="time" />
+        <input type="url" />
+        <input type="week" />
+      </form> */}
     </div>
   );
 };
