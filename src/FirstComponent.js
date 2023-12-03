@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { FaRegEdit } from "react-icons/fa";
 const FirstComponent = ({
   name,
   courseName,
@@ -21,6 +22,10 @@ const FirstComponent = ({
 
   //string state setting example
   const [subject, setSubjects] = useState("");
+
+  const [toggleSubmit, setToggleSubmit] = useState(true);
+
+  const [updateIndex, setUpdateIndex] = useState(null); // New state to keep track of the index to be updated
 
   return (
     // providing an id to uniquely identify the components
@@ -49,21 +54,44 @@ const FirstComponent = ({
           // here e stands for event so we take the target value of the onChange event
           onChange={(e) => setSubjects(e.target.value)}
         />
-        <button
-          onClick={(e) => {
-            setSubs([subject, ...subs]);
-            // added as to remove the text in textbox
-            setSubjects("");
-          }}
-        >
-          Add subjects
-        </button>
+        {toggleSubmit ? (
+          <button
+            onClick={(e) => {
+              setSubs([subject, ...subs]);
+              // added as to remove the text in textbox
+              setSubjects("");
+            }}
+          >
+            Add subjects
+          </button>
+        ) : (
+          <button
+            onClick={(e) => {
+              // Use the updateIndex to replace the existing subject at that index
+              const updatedSubs = [...subs];
+              updatedSubs[updateIndex] = subject;
+              setSubs(updatedSubs);
+              setSubjects("");
+              setToggleSubmit(true); // Reset the form to "Add" mode
+            }}
+          >
+            Update subjects
+          </button>
+        )}
       </p>
       <ul>
-        {subs.map((s) => (
+        {subs.map((s, index) => (
           // key needs to be provided for a list as during array use all the elements must be provided a unique key
           <li key={s}>
-            {s}
+            {s}{" "}
+            <FaRegEdit
+              color="e6f3ff"
+              onClick={(e) => {
+                setToggleSubmit(false);
+                setSubjects(subs[index]);
+                setUpdateIndex(index); // Set the index to be updated
+              }}
+            />
             {/* places only the elements that is not equal to s */}
             <AiFillDelete
               color="4d7a4d"
