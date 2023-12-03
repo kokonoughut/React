@@ -23,9 +23,9 @@ const FirstComponent = ({
   //string state setting example
   const [subject, setSubjects] = useState("");
 
-  const [toggleSubmit, setToggleSubmit] = useState(true);
+  const [editMode, setEditMode] = useState(false);
 
-  const [updateIndex, setUpdateIndex] = useState(null); // New state to keep track of the index to be updated
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
     // providing an id to uniquely identify the components
@@ -54,28 +54,31 @@ const FirstComponent = ({
           // here e stands for event so we take the target value of the onChange event
           onChange={(e) => setSubjects(e.target.value)}
         />
-        {toggleSubmit ? (
-          <button
-            onClick={(e) => {
+        <button
+          onClick={(e) => {
+            if (editMode) {
+              setSubs(subs.map((y, i) => (selectedIndex === i ? subject : y)));
+              setEditMode(false);
+              setSubjects("");
+              setSelectedIndex(-1);
+            } else {
               setSubs([subject, ...subs]);
               // added as to remove the text in textbox
               setSubjects("");
-            }}
-          >
-            Add subjects
-          </button>
-        ) : (
+            }
+          }}
+        >
+          {editMode ? "Update" : "Add"} subject
+        </button>
+        {editMode && (
           <button
-            onClick={(e) => {
-              // Use the updateIndex to replace the existing subject at that index
-              const updatedSubs = [...subs];
-              updatedSubs[updateIndex] = subject;
-              setSubs(updatedSubs);
+            onClick={() => {
+              setEditMode(false);
               setSubjects("");
-              setToggleSubmit(true); // Reset the form to "Add" mode
+              setSelectedIndex(-1);
             }}
           >
-            Update subjects
+            Cancel
           </button>
         )}
       </p>
@@ -87,9 +90,9 @@ const FirstComponent = ({
             <FaRegEdit
               color="e6f3ff"
               onClick={(e) => {
-                setToggleSubmit(false);
-                setSubjects(subs[index]);
-                setUpdateIndex(index); // Set the index to be updated
+                setEditMode(true);
+                setSelectedIndex(index);
+                setSubjects(s);
               }}
             />
             {/* places only the elements that is not equal to s */}
