@@ -27,6 +27,8 @@ const FirstComponent = ({
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
+  const [delcon, setdelcon] = useState(false);
+
   return (
     // providing an id to uniquely identify the components
     <div id="myComponent" style={{ color: testBoolean ? "black" : "white" }}>
@@ -98,7 +100,20 @@ const FirstComponent = ({
             {/* places only the elements that is not equal to s */}
             <AiFillDelete
               color="4d7a4d"
-              onClick={(e) => setSubs(subs.filter((x) => x !== s))}
+              onClick={(e) => {
+                if (delcon) {
+                  const shouldDelete = window.confirm(
+                    "Are you sure you want to delete?"
+                  );
+                  setdelcon(false);
+                  if (shouldDelete) {
+                    setSubs(subs.filter((x) => x !== s));
+                    setdelcon(false);
+                  }
+                } else {
+                  setdelcon(true);
+                }
+              }}
             />
           </li>
         ))}

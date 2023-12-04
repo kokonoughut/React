@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import FirstComponent from "./FirstComponent";
+import StockComponent from "./StockComponent";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           subjects={["mongoDB", "expressJs", "reactJs", "NodeJs"]}
           square={(x) => x * x}
         />
+        {/* <StockComponent></StockComponent> */}
       </header>
     </div>
   );
