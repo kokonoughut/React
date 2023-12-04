@@ -8,15 +8,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>MY name is utsab</p>
+        <p>SEARCH STOCK</p>
         <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          UTSAB KARKI
-        </a>
+        ></a>
         {/* self closing tag for only sending attributes without any children*/}
         {/* <FirstComponent
           // for string assignment we use =
