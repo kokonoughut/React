@@ -18,7 +18,7 @@ function App() {
           UTSAB KARKI
         </a>
         {/* self closing tag for only sending attributes without any children*/}
-        <FirstComponent
+        {/* <FirstComponent
           // for string assignment we use =
           name="Test"
           courseName="Mern"
@@ -29,8 +29,8 @@ function App() {
           // we can also pass function
           subjects={["mongoDB", "expressJs", "reactJs", "NodeJs"]}
           square={(x) => x * x}
-        />
-        {/* <StockComponent></StockComponent> */}
+        /> */}
+        <StockComponent></StockComponent>
       </header>
     </div>
   );
