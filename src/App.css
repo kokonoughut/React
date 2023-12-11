@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+.stocks-container {
+  width: 100%;
+  background-color: rgba(77, 5, 90, 0.756);
+  padding: 20px auto;
+  height: 60vh;
+  overflow: scroll;
+  margin: 20px auto;
+  text-align: left;
+}
+.stocks-container .stocks-item {
+  display: flex;
+  margin: 10px auto;
+}
+.stocks-container .stocks-item .sn {
+  flex-basis: 5%;
+}
+.stocks-container .stocks-item .sname {
+  flex-basis: 75%;
+}
+.stocks-container .stocks-item .symbol {
+  flex-basis: 10%;
+}
+.stocks-container .stocks-item .sid {
+  flex-basis: 10%;
+}

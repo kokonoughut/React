@@ -44,7 +44,7 @@ const StockComponent = () => {
       <ul>
         {/* Mapping through the filtered stocks and rendering individual stock information */}
         {filteredStocks.map((s) => (
-          <li key={s.securityId}>
+          <li key={s.symbol}>
             {/* Displaying stock information */}
             Name: {s.securityName}
             {/* Nested list for additional details */}

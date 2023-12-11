@@ -2,10 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 import FirstComponent from "./FirstComponent";
 import StockComponent from "./StockComponent";
-
+import SecondComponent from "./SecondComponent";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import CashFlowCalculator from "./cashFlowCalculator";
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>SEARCH STOCK</p>
@@ -28,7 +32,9 @@ function App() {
           subjects={["mongoDB", "expressJs", "reactJs", "NodeJs"]}
           square={(x) => x * x}
         /> */}
-        <StockComponent></StockComponent>
+        {/* <StockComponent></StockComponent> */}
+        {/* <SecondComponent></SecondComponent> */}
+        <CashFlowCalculator></CashFlowCalculator>
       </header>
     </div>
   );
