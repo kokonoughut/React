@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { STOCKS } from "./constants";
-import { AiFillDelete } from "react-icons/ai";
-import { FaRegEdit } from "react-icons/fa";
 
 import { toast } from "react-toastify";
+import StockItem from "./StockItem";
 
 const SecondComponent = () => {
   const [stocks, setStocks] = useState(STOCKS);
@@ -17,12 +16,8 @@ const SecondComponent = () => {
   const [symbol, setSymbol] = useState("");
   const [securityId, setSecurityId] = useState(null);
 
-  const handlePressEnterATSecurityID = (e) => {
-    if (e.code === "Enter") {
-      handleAddUpdateStock(e);
-      securityNameRef.current?.focus();
-    }
-  };
+  // console.log(STOCKS);
+
   useEffect(
     () =>
       setStocks(
@@ -35,19 +30,38 @@ const SecondComponent = () => {
     [searchWord]
   );
 
+  const symbolRef = useRef(null);
+
+  const securityIdRef = useRef(null);
+
+  const securityNameRef = useRef(null);
+
+  console.log(symbolRef, securityIdRef, securityNameRef, "check refs");
+
+  const handleEnterAtSecurityId = (e) => {
+    if (e.code === "Enter") {
+      handleAddUpdate(e);
+      securityNameRef.current?.focus();
+    }
+  };
+
   const handleAddUpdate = (e) => {
-    if (!editState) {
-      setStocks([{ securityName, symbol, securityId }, ...stocks]);
-      toast.success("Stock added");
+    if ([securityName, symbol, securityId].some((s) => s === "")) {
+      toast.warning("cant enter empty stock");
     } else {
-      setStocks(
-        stocks.map((s) =>
-          selectedStock.securityId === s.securityId
-            ? { ...s, securityName, securityId, symbol }
-            : s
-        )
-      );
-      toast.success("Stock Updated");
+      if (!editState) {
+        setStocks([{ securityName, symbol, securityId }, ...stocks]);
+        toast.success("Stock added");
+      } else {
+        setStocks(
+          stocks.map((s) =>
+            selectedStock.securityId === s.securityId
+              ? { ...s, securityName, securityId, symbol }
+              : s
+          )
+        );
+        toast.success("Stock Updated");
+      }
     }
   };
 
@@ -59,17 +73,26 @@ const SecondComponent = () => {
           placeholder="SecurityName"
           value={securityName}
           onChange={(e) => setSecurityName(e.target.value)}
-          onKeyUp={(e) => (e.code === "Enter" ? console.log("enter") : void 0)}
+          onKeyUp={(e) =>
+            e.code === "Enter" ? symbolRef.current?.focus() : void 0
+          }
+          ref={securityNameRef}
         />
         <input
           placeholder="Symbol"
           value={symbol}
           onChange={(e) => setSymbol(e.target.value)}
+          onKeyUp={(e) =>
+            e.code === "Enter" ? securityIdRef.current?.focus() : void 0
+          }
+          ref={symbolRef}
         />
         <input
           placeholder="securityId"
           value={securityId}
           onChange={(e) => setSecurityId(e.target.value)}
+          onKeyUp={handleEnterAtSecurityId}
+          ref={securityIdRef}
         />
 
         <button onClick={handleAddUpdate}>
@@ -87,48 +110,31 @@ const SecondComponent = () => {
         />
       </div>
       <div className="stocks-container">
+        <div className="stocks-item heading">
+          <span className="sn">SN</span>
+          <span className="sname">Security Name</span>
+          <span className="symbol">Sym</span>
+          <span className="sid"> Id</span>
+        </div>
         {stocks.map((s, index) => (
-          <div key={s.securityId} className="stocks-item">
-            <span className="sn">{index + 1}</span>
-            <span className="sname">{s.securityName}</span>
-            <span className="symbol">{s.symbol}</span>
-            <span className="sid">{s.securityId}</span>
-            <span>
-              <FaRegEdit
-                onClick={(e) => {
-                  setEditState(true);
-                  setSelectedStock(s);
-                  setSecurityName(s.securityName);
-                  setSymbol(s.symbol);
-                  setSecurityId(s.securityId);
-                }}
-              />
-            </span>
-            <span>
-              <AiFillDelete
-                onClick={(e) => {
-                  setAlertState(true);
-
-                  setSelectedIndex(index);
-                }}
-              />
-            </span>
-            {alertState && selectedIndex === index && (
-              <div style={{ backgroundColor: "red" }}>
-                Are you Sure?
-                <button
-                  onClick={(e) => {
-                    setStocks(stocks.filter((x) => x !== s));
-                    setAlertState(false);
-                    toast.success("Stock Deleted");
-                  }}
-                >
-                  Delete
-                </button>
-                <button onClick={(e) => setAlertState(false)}>Cancel</button>
-              </div>
-            )}
-          </div>
+          <StockItem
+            key={s.securityId}
+            {...{
+              s,
+              index,
+              alertState,
+              setAlertState,
+              setStocks,
+              setSymbol,
+              setSelectedIndex,
+              setEditState,
+              stocks,
+              selectedIndex,
+              setSelectedStock,
+              setSecurityId,
+              setSecurityName,
+            }}
+          />
         ))}
       </div>
     </div>
