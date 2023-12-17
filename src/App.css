@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: bisque;
 }
 
 .App-logo {
@@ -37,7 +38,7 @@
   }
 }
 
-.stocks-container{
+.stocks-container {
   width: 100%;
   background-color: rgba(77, 5, 90, 0.756);
   padding: 20px auto;
@@ -55,16 +56,16 @@
   color: #040101;
 }
 
-.stocks-container .stocks-item .sn{
+.stocks-container .stocks-item .sn {
   flex-basis: 5%;
 }
-.stocks-container .stocks-item .sname{
+.stocks-container .stocks-item .sname {
   flex-basis: 75%;
 }
-.stocks-container .stocks-item .symbol{
+.stocks-container .stocks-item .symbol {
   flex-basis: 10%;
 }
-.stocks-container .stocks-item .sid{
+.stocks-container .stocks-item .sid {
   flex-basis: 10%;
 }
 
@@ -90,7 +91,7 @@ button.selected {
   background-color: #040101;
 }
 
-.active{
+.active {
   background-color: #61dafb;
 }
 
@@ -112,12 +113,12 @@ button.selected {
   text-decoration: none;
   margin: 10px 0;
   padding: 5px;
-  text-align: left; 
+  text-align: left;
   transition: all 0.4s;
   display: flex;
   align-items: center;
   font-size: 20px;
-} 
+}
 
 .body #sidebar .sidebar-option svg {
   margin-right: 5px;
@@ -125,10 +126,10 @@ button.selected {
 
 .body #sidebar .sidebar-option:hover {
   background-color: #282c34;
-  color:honeydew
+  color: honeydew;
 }
 
 .body .main-container {
-width: calc(100% - 200px);
-padding: 30px 40px 10px 25px;
+  width: calc(100% - 200px);
+  padding: 30px 40px 10px 25px;
 }

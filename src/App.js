@@ -10,7 +10,9 @@ import BillingList from "./Components/BillingList";
 import { STOCKS } from "./Constants";
 import { Routes, Route, Link, NavLink } from "react-router-dom";
 import { IoCashOutline } from "react-icons/io5";
-
+import { AiOutlineStock } from "react-icons/ai";
+import { FaList } from "react-icons/fa";
+import { LiaMoneyBillSolid } from "react-icons/lia";
 export const SampleContext = createContext();
 
 function App() {
@@ -38,21 +40,21 @@ function App() {
           subs={["mongoDB", "React", "nodejs"]}
         />
       ),
-      icon: <IoCashOutline />,
+      icon: <FaList />,
     },
     {
       key: "stocks",
       path: "/stocks",
       title: "stocks",
       component: <SecondComponent stocks={stocks} setStocks={setStocks} />,
-      icon: <IoCashOutline />,
+      icon: <AiOutlineStock />,
     },
     {
       key: "billing",
       path: "/billing",
       title: "BillingList",
       component: <BillingList stocks={stocks} />,
-      icon: <IoCashOutline />,
+      icon: <LiaMoneyBillSolid />,
     },
   ];
 
