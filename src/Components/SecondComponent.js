@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { STOCKS } from "./constants";
+import { STOCKS } from "../Constants";
 
 import { toast } from "react-toastify";
-import StockItem from "./StockItem";
+import StockItem from "../StockItem";
 
-const SecondComponent = () => {
-  const [stocks, setStocks] = useState(STOCKS);
+const SecondComponent = ({ stocks, setStocks }) => {
+  // const [stocks, setStocks] = useState(STOCKS);
   const [alertState, setAlertState] = useState(false);
   const [editState, setEditState] = useState(false);
   const [selectedStock, setSelectedStock] = useState({});
@@ -21,7 +21,7 @@ const SecondComponent = () => {
   useEffect(
     () =>
       setStocks(
-        STOCKS.filter((s) =>
+        stocks.filter((s) =>
           [s.securityName, s.securityId, s.symbol].some((x) =>
             x.toLowerCase().includes(searchWord.toLowerCase())
           )
@@ -67,8 +67,8 @@ const SecondComponent = () => {
 
   return (
     <div>
-      <h2>Todays Stocks:</h2>
-      <div>
+      <div style={{ marginTop: "15%" }}>
+        <h2>Todays Stocks:</h2>
         <input
           placeholder="SecurityName"
           value={securityName}
@@ -93,6 +93,7 @@ const SecondComponent = () => {
           onChange={(e) => setSecurityId(e.target.value)}
           onKeyUp={handleEnterAtSecurityId}
           ref={securityIdRef}
+          disabled={editState}
         />
 
         <button onClick={handleAddUpdate}>

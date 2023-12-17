@@ -1,0 +1,38 @@
+.bill-container {
+    
+    background-color: rgb(45, 217, 160);
+    width: 100%;
+    padding: 20px auto;
+    margin: 5px auto;
+    text-align: left;
+    
+}
+.bill-container .bill-container-heading{
+    display: flex;
+    color: black;
+}
+
+.bill-container .bill-item{
+    display: flex;
+    margin:10px auto;
+}
+
+.bill-container .sn {
+    flex-basis: 10%;
+}
+
+.bill-container .particular {
+    flex-basis: 60%;
+}
+.bill-container .rt {
+    flex-basis: 10%;
+}
+.bill-container .qt {
+    flex-basis: 10%;
+}
+
+.bill-container .total {
+    flex-basis: 10%;
+    
+}
+
