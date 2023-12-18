@@ -4,7 +4,7 @@ export const SampleContext = createContext();
 
 const sampleReducer = (state, action) => {
   switch (action.type) {
-    case "Update Test":
+    case "Update_Test":
       state.test = action.payload;
       return state;
     default:
@@ -16,8 +16,15 @@ const SampleProvider = ({ children }) => {
   const [samplestate, dispatch] = useReducer(sampleReducer, {
     test: "sample test",
   });
+
+  const updateTest = (testValue) => {
+    dispatch({
+      type: "Update_Test",
+      payload: testValue,
+    });
+  };
   return (
-    <SampleContext.Provider value={{ test: "Sample text" }}>
+    <SampleContext.Provider value={{ samplestate, updateTest }}>
       {children}
     </SampleContext.Provider>
   );
