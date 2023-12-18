@@ -13,7 +13,7 @@ import { IoCashOutline } from "react-icons/io5";
 import { AiOutlineStock } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { LiaMoneyBillSolid } from "react-icons/lia";
-export const SampleContext = createContext();
+import SampleProvider from "./context/SampleContext";
 
 function App() {
   const [whatToShow, setWhatToShow] = useState("billing");
@@ -72,7 +72,7 @@ function App() {
         </div>
 
         <div className="main-container">
-          <SampleContext.Provider value={{ test: "Sample text" }}>
+          <SampleProvider>
             <Routes>
               {BUTTONS.map((a) => (
                 <Route path={a.path} key={a.key} element={a.component} />
@@ -86,7 +86,7 @@ function App() {
                 }
               />
             </Routes>
-          </SampleContext.Provider>
+          </SampleProvider>
         </div>
       </div>
     </div>
