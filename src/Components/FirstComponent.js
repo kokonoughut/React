@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { MdOutlineEdit } from "react-icons/md";
-import { SampleContext } from "../App";
+import { SampleContext } from "../context/SampleContext";
 
 const FirstComponent = (props) => {
   //const [a, b] = useState(false);
