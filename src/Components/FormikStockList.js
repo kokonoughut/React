@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { STOCKS } from "../Constants";
 
 import { toast } from "react-toastify";
 import StockItem from "../StockItem";
+import { SampleContext, useSample } from "../context/SampleContext";
 import { useFormik } from "formik";
+import { json } from "react-router-dom";
+import { stockSchema } from "../schemas/stockSchema";
 
 const FormikSecondComponent = ({ stocks, setStocks }) => {
   // const [stocks, setStocks] = useState(STOCKS);
@@ -19,12 +22,17 @@ const FormikSecondComponent = ({ stocks, setStocks }) => {
 
   // console.log(STOCKS);
 
+  const testTheProvider = useSample();
+
+  console.log(testTheProvider);
+
   const formik = useFormik({
     initialValues: {
       securityName: "",
       symbol: "",
       securityId: "",
     },
+    validationSchema: stockSchema,
     onSubmit: (values) => alert(JSON.stringify(values)),
   });
 
@@ -46,7 +54,7 @@ const FormikSecondComponent = ({ stocks, setStocks }) => {
 
   const securityNameRef = useRef(null);
 
-  console.log(symbolRef, securityIdRef, securityNameRef, "check refs");
+  // console.log(symbolRef, securityIdRef, securityNameRef, "check refs");
 
   const handleEnterAtSecurityId = (e) => {
     if (e.code === "Enter") {
@@ -74,12 +82,13 @@ const FormikSecondComponent = ({ stocks, setStocks }) => {
       }
     }
   };
-  console.log(formik, "check formik");
+
+  console.log("check formik", formik.values, formik.errors, formik.touched);
   return (
     <div>
-      {/* <div style={{ marginTop: "15%" }}>
+      <div style={{ marginTop: "15%" }}>
         <h2>Todays Stocks:</h2>
-        <input
+        {/* <input
           placeholder="SecurityName"
           value={securityName}
           onChange={(e) => setSecurityName(e.target.value)}
@@ -87,8 +96,20 @@ const FormikSecondComponent = ({ stocks, setStocks }) => {
             e.code === "Enter" ? symbolRef.current?.focus() : void 0
           }
           ref={securityNameRef}
-        />
-        <input
+        /> */}
+        <form>
+          <label htmlFor="securityName">Security Name</label>
+          <input
+            id="securityName"
+            name="securityName"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.securityName}
+          />
+          <span>{formik.errors.securityName}</span>
+
+          {/* <input
           placeholder="Symbol"
           value={symbol}
           onChange={(e) => setSymbol(e.target.value)}
@@ -96,52 +117,40 @@ const FormikSecondComponent = ({ stocks, setStocks }) => {
             e.code === "Enter" ? securityIdRef.current?.focus() : void 0
           }
           ref={symbolRef}
-        />
-        <input
+        /> */}
+          <label htmlFor="symbol">Symbol</label>
+          <input
+            id="symbol"
+            name="symbol"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.symbol}
+          />
+          <span>{formik.errors.symbol}</span>
+
+          {/* <input
           placeholder="securityId"
           value={securityId}
           onChange={(e) => setSecurityId(e.target.value)}
           onKeyUp={handleEnterAtSecurityId}
           ref={securityIdRef}
           disabled={editState}
-        />
-
-        <button onClick={handleAddUpdate}>
-          {editState ? "Update" : "Add"} Stock
-        </button>
-        {editState && (
-          <button onClick={(e) => setEditState(false)}>Cancel</button>
-        )}
-      </div> */}
-      <div>
-        <form>
-          <label htmlFor="securityName">security Name</label>
-          <input
-            id="securityName"
-            name="securityName"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.securityName}
-          />
-          <label htmlFor="symbol">symbol</label>
-          <input
-            id="symbol"
-            name="symbol"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.symbol}
-          />
-          <label htmlFor="securityId">securityId</label>
+        /> */}
+          <label htmlFor="securityId">security Id</label>
           <input
             id="securityId"
             name="securityId"
             type="number"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.securityId}
           />
+          <span>{formik.errors.securityId}</span>
 
           <button
-          // onClick={handleAddUpdate}
+            // onClick={handleAddUpdate}
+            onClick={formik.handleSubmit}
           >
             {editState ? "Update" : "Add"} Stock
           </button>

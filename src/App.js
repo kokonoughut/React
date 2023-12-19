@@ -9,10 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import BillingList from "./Components/BillingList";
 import { STOCKS } from "./Constants";
 import { Routes, Route, Link, NavLink } from "react-router-dom";
-import { IoCashOutline } from "react-icons/io5";
-import { AiOutlineStock } from "react-icons/ai";
-import { FaList } from "react-icons/fa";
-import { LiaMoneyBillSolid } from "react-icons/lia";
+import { IoCashOutline, IoBookSharp } from "react-icons/io5";
+import { BsGraphUpArrow } from "react-icons/bs";
+import { RiBillFill } from "react-icons/ri";
 import SampleProvider from "./context/SampleContext";
 import FormikSecondComponent from "./Components/FormikStockList";
 
@@ -41,30 +40,30 @@ function App() {
           subs={["mongoDB", "React", "nodejs"]}
         />
       ),
-      icon: <FaList />,
+      icon: <IoBookSharp />,
     },
     {
       key: "stocks",
       path: "/stocks",
-      title: "stocks",
+      title: "Stocks",
       component: <SecondComponent stocks={stocks} setStocks={setStocks} />,
-      icon: <AiOutlineStock />,
+      icon: <BsGraphUpArrow />,
     },
     {
       key: "billing",
       path: "/billing",
       title: "BillingList",
       component: <BillingList stocks={stocks} />,
-      icon: <LiaMoneyBillSolid />,
+      icon: <RiBillFill />,
     },
     {
-      key: "formik",
-      path: "/formik",
-      title: "formik",
+      key: "formikstocks",
+      path: "/formikstocks",
+      title: "Formik Stocks",
       component: (
         <FormikSecondComponent stocks={stocks} setStocks={setStocks} />
       ),
-      icon: <LiaMoneyBillSolid />,
+      icon: <BsGraphUpArrow />,
     },
   ];
 
@@ -76,7 +75,7 @@ function App() {
         <div id="sidebar">
           {BUTTONS.map((a) => (
             <NavLink to={a.path} key={a.key} className="sidebar-option">
-              {a.icon} {a.title}
+              {a.title} {a.icon}
             </NavLink>
           ))}
         </div>
