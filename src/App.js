@@ -14,6 +14,7 @@ import { AiOutlineStock } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { LiaMoneyBillSolid } from "react-icons/lia";
 import SampleProvider from "./context/SampleContext";
+import FormikSecondComponent from "./Components/FormikStockList";
 
 function App() {
   const [whatToShow, setWhatToShow] = useState("billing");
@@ -54,6 +55,15 @@ function App() {
       path: "/billing",
       title: "BillingList",
       component: <BillingList stocks={stocks} />,
+      icon: <LiaMoneyBillSolid />,
+    },
+    {
+      key: "formik",
+      path: "/formik",
+      title: "formik",
+      component: (
+        <FormikSecondComponent stocks={stocks} setStocks={setStocks} />
+      ),
       icon: <LiaMoneyBillSolid />,
     },
   ];

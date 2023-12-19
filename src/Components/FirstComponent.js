@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { MdOutlineEdit } from "react-icons/md";
-import { SampleContext } from "../context/SampleContext";
+import { SampleContext, useSample } from "../context/SampleContext";
 
 const FirstComponent = (props) => {
   //const [a, b] = useState(false);
@@ -17,10 +17,18 @@ const FirstComponent = (props) => {
 
   const [alertState, setAlertState] = useState(false);
 
+  const [testLocal, setTestLocal] = useState("");
+
   //console.log(a, "values", b);
   console.log(editMode);
 
-  const testTheProvider = useContext(SampleContext);
+  // const testTheProvider = useContext(SampleContext);
+  const testTheProvider = useSample();
+
+  useEffect(() => {
+    const testttt = localStorage.getItem("testObject");
+    setTestLocal(testttt);
+  }, []);
 
   console.log(testTheProvider, "check ");
   return (
@@ -28,6 +36,7 @@ const FirstComponent = (props) => {
       {/* <p>for example</p>
       <h1>{props.name}</h1>
       <h2>{props.coursename}</h2> */}
+      <h2>{testLocal}</h2>
       <h3>{age}</h3>
       <button onClick={(e) => setage(age + 1)}>+</button>
       <div>
@@ -62,6 +71,10 @@ const FirstComponent = (props) => {
           </button>
         )}
       </div>
+      <h2>{testTheProvider.sampleState.test}</h2>
+      <button id="test" onClick={(e) => testTheProvider.updateTest(subject)}>
+        Update Context Value (TEST with subject)
+      </button>
       <ol>
         {subs.map((s, index) => (
           <li key={s}>
