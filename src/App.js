@@ -7,7 +7,7 @@ import SecondComponent from "./Components/SecondComponent";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BillingList from "./Components/BillingList";
-import { STOCKS } from "./Constants";
+import { STOCKS } from "./constants";
 import { Routes, Route, Link, NavLink } from "react-router-dom";
 import { IoCashOutline, IoBookSharp } from "react-icons/io5";
 import { BsGraphUpArrow } from "react-icons/bs";
